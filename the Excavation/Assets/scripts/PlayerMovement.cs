@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -19,6 +20,17 @@ public class PlayerMovement : MonoBehaviour
     {
         physicsbody = GetComponent<Rigidbody2D>();
     }
+
+    public void FixedUpdate()
+    {
+        Vector2 newVelocity = physicsbody.velocity;
+        newVelocity.x = speed * myJoystick.Horizontal;
+        newVelocity.y = speed * myJoystick.Vertical;
+        physicsbody.velocity = newVelocity;
+
+    }
+
+    
 
 
     public void MoveLeft()
@@ -62,10 +74,10 @@ public class PlayerMovement : MonoBehaviour
             physicsbody.velocity = newVelocity;
         }
     }
+    public Joystick myJoystick = null;
 
-     
-    
 
+   
 
 
 
